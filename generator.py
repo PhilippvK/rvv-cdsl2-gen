@@ -2,6 +2,7 @@
 
 # import copy
 import json
+
 # import math
 
 fun3 = {
@@ -17,7 +18,7 @@ fun3 = {
     "line2": {
         "V": "001",
         "F": "101",
-    }
+    },
 }
 
 extend_encode = {
@@ -78,19 +79,41 @@ extend_encode = {
             "10001": "vid",
         },
     },
-    "vs2": {
-        "VRXUNARY0": {
-            "00000": "vmv.s.x"
-        },
-        "VRFUNARY0": {
-            "00000": "vfmv.s.f"
-        }
-    }
+    "vs2": {"VRXUNARY0": {"00000": "vmv.s.x"}, "VRFUNARY0": {"00000": "vfmv.s.f"}},
 }
 sp_inst = ["100111", "", "", "I", "vmv<nr>r"]
-opList = ["and", "or", "xor", "xnor", "add", "sub", "adc", "sbc", "slt", "sle", "sgt", "sge", "seq", "sne", "max",
-          "min", "sl", "sr", "mul", "div",
-          "rem", "ma", "ms", "slide", "rgather", "merge", "mv", "clip", "compress", "sum"]
+opList = [
+    "and",
+    "or",
+    "xor",
+    "xnor",
+    "add",
+    "sub",
+    "adc",
+    "sbc",
+    "slt",
+    "sle",
+    "sgt",
+    "sge",
+    "seq",
+    "sne",
+    "max",
+    "min",
+    "sl",
+    "sr",
+    "mul",
+    "div",
+    "rem",
+    "ma",
+    "ms",
+    "slide",
+    "rgather",
+    "merge",
+    "mv",
+    "clip",
+    "compress",
+    "sum",
+]
 mul_list = ["mul", "ma", "ms"]
 div_list = ["div", "rem"]
 add_list = ["add", "sub", "slt", "sle", "sgt", "sge", "max", "min", "seq", "sne", "adc", "sbc", "sum"]
@@ -153,7 +176,7 @@ def b2s(b):
 
 
 def inst_parse():
-    fd = open("output.core_desc", 'w')
+    fd = open("output.core_desc", "w")
     res = load_res()
     count = 0
     end_count = 0
@@ -179,7 +202,7 @@ def inst_parse():
                     # print("    v", v)
                     if v.get(placeholder):
                         for rsx, inst_name in v.get(placeholder).items():
-                            inst_st_p = "BitPat(\"b%s??????%s%s\")" if k == "vs1" else "BitPat(\"b%s?%s?????%s\")"
+                            inst_st_p = 'BitPat("b%s??????%s%s")' if k == "vs1" else 'BitPat("b%s?%s?????%s")'
                             funct7 = "1010111"
                             funct6 = i[0]
                             # bbb = rsx
@@ -192,8 +215,10 @@ def inst_parse():
                             # print(k, bbb)
                             # print("funct3", ccc)
                             print(inst_name, "{")
-                            print(f"  encoding: 6'b{funct6} :: vm[0:0] :: {vs2_str} :: {vs1_str} :: 3'b{funct3} :: {vd_str} :: 7'b{funct7}")
-                            print(f"  assembly: {{\"{inst_name}.??\", \"?\"}};")
+                            print(
+                                f"  encoding: 6'b{funct6} :: vm[0:0] :: {vs2_str} :: {vs1_str} :: 3'b{funct3} :: {vd_str} :: 7'b{funct7}"
+                            )
+                            print(f'  assembly: {{"{inst_name}.??", "?"}};')
                             print("  behavior: {};")
                             print("}")
                             # input(">1")
@@ -243,7 +268,7 @@ def inst_parse():
                     # print("    inst_type", inst_type)
                     if inst_type == "":
                         continue
-                    inst_st = "BitPat(\"b%s%s%s\")" % (i[0], "?" * 11, fun3[fun_3][inst_type])
+                    inst_st = 'BitPat("b%s%s%s")' % (i[0], "?" * 11, fun3[fun_3][inst_type])
                     funct6 = i[0]
                     funct3 = fun3[fun_3][inst_type]
                     vs2_str = "vs2[4:0]"
@@ -254,8 +279,10 @@ def inst_parse():
                     # print("funct6", funct6)
                     # print("funct3", funct3)
                     print(i[-1].upper(), "{")
-                    print(f"  encoding: 6'b{funct6} :: vm[0:0] :: {vs2_str} :: {vs1_str} :: 3'b{funct3} :: {vd_str} :: 7'b{funct7};")
-                    print(f"  assembly: {{\"{i[-1]}.??\", \"?\"}};")
+                    print(
+                        f"  encoding: 6'b{funct6} :: vm[0:0] :: {vs2_str} :: {vs1_str} :: 3'b{funct3} :: {vd_str} :: 7'b{funct7};"
+                    )
+                    print(f'  assembly: {{"{i[-1]}.??", "?"}};')
                     print("}")
                     # input(">2")
                     abc = "?"
