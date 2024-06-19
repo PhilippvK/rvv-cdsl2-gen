@@ -1,0 +1,299 @@
+vaaddu.vv vd, vs2, vs1
+vaaddu.vx vd, vs2, rs1
+vaadd.vv vd, vs2, vs1
+vaadd.vx vd, vs2, rs1
+vadc.vim vd, vs2, simm5, v0
+vadc.vvm vd, vs2, rs1, v0
+vadc.vxm vd, vs2, rs1, v0
+vadd.vi vd, simm5, vs2, vm
+vadd.vv vd, vs1, vs2, vm
+vadd.vx vd, rs1, vs2, vm
+vaesdf.vs vd, vs2
+vaesdf.vv vd, vs2
+vaesdm.vs vd, vs2
+vaesdm.vv vd, vs2
+vaesef.vs vd, vs2
+vaesef.vv vd, vs2
+vaesem.vs vd, vs2
+vaesem.vv vd, vs2
+vaeskf1.vi vd, vs2, rnd
+vaeskf2.vi vd, vs2, rnd
+vaesz.vs vd, vs2
+vandn.vv vd, vs2, vs1, vm
+vandn.vx vd, vs2, rs1, vm
+vand.vi vd, simm5, vs2, vm
+vand.vv vd, vs1, vs2, vm
+vand.vx vd, rs1, vs2, vm
+vasubu.vv vd, vs2, vs1
+vasubu.vx vd, vs2, rs1
+vasub.vv vd, vs2, vs1
+vasub.vx vd, vs2, rs1
+vbrev8.v vd, vs2, vm
+vbrev.v vd, vs2
+vclmulh.vv vd, vs2, vs1, vm
+vclmulh.vx vd, vs2, rs1, vm
+vclmul.vv vd, vs2, vs1, vm
+vclmul.vx vd, vs2, rs1, vm
+vclz.v vd, vs2
+vcompress vd, vs2, vs1
+vmpopc rd, vs2, vm
+vpopc.v vd, vs2
+vctz.v vd, vs2
+vdivu.vv vd, vs2, vs1
+vdivu.vx vd, vs2, rs1
+vdiv.vv vd, vs2, vs1
+vdiv.vx vd, vs2, rs1
+vfadd.vf vd, vs2, rs1
+vfadd.vv vd, vs2, vs1
+vfclass.v vd, vs2, vm
+vfcvt.f.xu.v vd, vd2, vm
+vfcvt.f.x.v vd, vd2, vm
+vfcvt.rtz.x.f.v vd, vd2, vm
+vfcvt.rtz.xu.f.v vd, vd2, vm
+vfcvt.x.f.v vd, vd2, vm
+vfcvt.xu.f.v vd, vd2, vm
+vfdiv.vf vd, vs2, rs1
+vfdiv.vv  vd, vs2, vs1
+vmfirst rd, vs2
+vfmerge_vf vd, vs2, vs1, vm
+vfmin vd, vs2, rs1
+vfmin vd, vs2, vs1
+vfmul.vf vd, vs2, rs1, vm
+vfmul.vv vd, vs1, vs2, vm
+vfmv_vf vd, vs1
+vfncvtbf16.f.f.w vd, vs2, vm
+vfncvt.f.f.w vd, vs2, vm
+vfncvt.f.xu.w vd, vs2, vm
+vfncvt.f.x.w vd, vs2, vm
+vfncvt.rod.f.f.w vd, vs2, vm
+vfncvt.rtz.x.f.w vd, vs2, vm
+vfncvt.rtz.xu.f.w vd, vs2, vm
+vfncvt.x.f.w vd, vs2, vm
+vfncvt.xu.f.w vd, vs2, vm
+vfclass.v vd, vs2, vm
+vfredmax vd, vs2, vs1
+vfredmin vd, vs2, vs1
+vfclass.v vd, vs2, vm
+vfsub.vf vd, vs2, rs1
+vfsgnj vd, vs2, vs1
+vsqrt.v vd, vd2, vm
+vfsub.vf vd, vs2, rs1
+vfsub.vv vd, vs2, vs1
+vfwadd.vf vd, vs2, rs1
+vfwadd.vv vd, vs2, vs1
+vfwadd.wf vd, vs2, vs1
+vfwadd.wv vd, vs2, vs1
+vfwcvtbf16.f.f.v vd, vs2, vm
+vfwcvt.f.f.v vd, vs2, vm
+vfwcvt.f.xu.v vd, vs2, vm
+vfwcvt.f.x.v vd, vs2, vm
+vfwcvt.rtz.x.f.v vd, vs2, vm
+vfwcvt.rtz,xu.f.v vd, vs2, vm
+vfwcvt.x.f.v vd, vs2, vm
+vfwcvt.xu.f.v vd, vs2, vm
+vfwmaccbf16.vf vd, vs2, rs1
+vfwmaccbf16.vv vd, vs2, vs1
+vfwmacc.vf vd, vs2, rs1
+vfwmacc.vv vd, vs2, vs1
+vfwmsac.vf vd, vs2, rs1
+vfwmsac.vv  vd, vs2, vs1
+vfwmul.vf vd, vs2, rs1
+vfwmul.vv vd, vs2, vs1
+vfwnmacc.vf vd, vs2, rs1
+vfwnmacc.vv vd, vs2, vs1
+vfwnmacc.vf vd, vs2, rs1
+vfwnmsac.vv vd, vs2, vs1
+vfwredosum.vs vd, vs2, vs1
+vfwredsum.vs vd, vs2, vs1
+vfwsub.vf vd, vs2, rs1
+vfwsub.vv vd, vs2, vs1
+vfwsub.wf vd, vs2, rs1
+vfwsub.wv vd, vs2, vs1
+vghsh.vv vd, vs2, vs1
+vgmul.vv vd, vs2
+vmpopc rd, vs2, vm
+vmpopc rd, vs2, vm
+vl1re16.v vd, (rs1)
+vl1re32.v vd, (rs1)
+vl1re64.v vd, (rs1)
+vl1re8.v vd, (rs1)
+vl2e16.v vd, (rs1)
+vl2re32.v vd, (rs1)
+vl2re64.v vd, (rs1)
+vl2re8.v vd, (rs1)
+vl4re16.v vd, (rs1)
+vl4re32.v vd, (rs1)
+vl4re64.v vd, (rs1)
+vl4re8.v vd, (rs1)
+vl8re16.v vd, (rs1)
+vl8re32.v vd, (rs1)
+vl8re64.v vd, (rs1)
+vl8re8.v vd, (rs1)
+vmadc.vi vd, vs2, simm5
+vmadc.vim vd, vs2, simm5, v0
+vmadc.vvm vd, vs2, rs1
+vmadc.vvm vd, vs2, rs1, v0
+vadc.vx vd, vs2, rs1
+vadc.vx vd, vs2, rs1, v0
+vmand.mm vd, vs2, vs1
+vmandn.mm vd, vs2, vs1
+vmerge.vim vd, vs2, simm5
+vmerge.vvm vd, vs2, vs1
+vmerge.vxm vd, vs2, rs1
+vmfeq.vf vd, vs2, fs1
+vmfeq.vv vd, vs2, vs1
+vmfge.vf vd, vs2, rs1
+vmfgt.vf vd, vs2, rs1
+vmfle.vf vd, vs2, rs1
+vmfle.vv vd, vs2, rs1
+vmflt.vf vd, vs2, rs1
+vmflt.vv vd, vs2, vs1
+vmfne.vf vd, vs2, rs1
+vmfne.vv vd, vs2, rs1
+vmnand.mm vd, vs2, vs1
+vmnor.mm vd, vs2, vs1
+vmor.mm vd, vs2, vs1
+vmorn.mm vd, vs2, vs1
+vmsbc.vv vd, vs2, rs1
+vmsbc.vvm vd, vs2, rs1, v0
+vmsbc.vx vd, vs2, rs1
+vmsbc.vxm vd, vs2, rs1, v0
+vmsbf.m vd, vs2, vm
+vseq.vi vd, vs2, simm5
+vseq.vv vd, vs2, vs1
+vseq.vx vd, vs2, rs1
+vmsgtu.vi  vd, vd2, simm5
+vsgtu.vx  vd, vs2, rs1
+vsgt.vi  vd, vs2, simm5
+vsgt.vx  vd, vs2, rs1
+vmsif.m rd, vs2, vm
+vmsleu.vi vd, vs2, simm5
+vsleu.vv vd, vs2, vs1
+vsleu.vx  vd, vs2, rs1
+vsle.vi vd, vs2, simm5
+vsle.vv vd, vs2, vs1
+vsle.vx vd, vs2, rs1
+vsltu.vv  vd, vs2, vs1
+vsltu.vx  vd, vs2, vs1
+vslt.vv  vd, vd2, vs1
+vslt.vx  vd, vs2, vs1
+vsne.vi  vd, vs2, simm5
+vneq.vv  vd, vs2, vs1
+vsne.vx  vd, vs2, rs1
+vmsof.m rd, vs2, vm
+vmulhsu.vv vd, vs2, vs1
+vmulhsu.vx vd, vs2, rs1
+vmulhu vd ,vs2, vs1
+vmulhu vd ,vs2, rs1
+vmulh vd, vs2, vs1
+vmulh vd, vs2, rs1
+vmul vd, vs2, vs1
+vmul vd, vs2, rs1
+vmv1r.v vd, vs2
+vmv2r.v vd, vs2
+vmv4r.v vd, vs2
+vmv8r.v vd, vs2
+vmv<nf>r.v vd, vs2
+vmv.v.i vd, simm5
+vvmv.v.v vd, vs1
+vmv.v.x vd, rs1
+vmnxor.mm vd, vs2, vs1
+vmxor.mm vd, vs2, vs1
+vnsra.vi vd, vs2, zimm5
+vnsra.vv vd, vs2, vs1
+vnsra.vx vd, vs2, rs1
+vnsrl.vi vd, vs2, zimm5
+vnsrl.vv vd, vs2, vs1
+vnsrl.vx vd, vs2, rs1
+vredand.vs vd, vs2 ,vs1
+vredmaxu.vs vd, vs2 ,vs1
+vredmax.vs vd, vs2 ,vs1
+vredminu.vs vd, vs2 ,vs1
+vredmin.vs vd, vs2 ,vs1
+vredor.vs vd, vs2 ,vs1
+vredsum.vs vd, vs2 ,vs1
+vredxor.vs vd, vs2 ,vs1
+vremu.vv vd, vs2, vs1
+vremu.vx vd, vs2, rs1
+vrem.vv vd, vs2, vs1
+vrem.vx vd, vs2, rs1
+vrev8.v vd, vs2, vm
+vrol.vv vd, vs2, vs1, vm
+vrol.vx vd, vs2, rs1, vm
+vror.vi vd, vs2, zimm6, vm
+vror.vv vd, vs2, vs1, vm
+vror.vx vd, vs2, rs1, vm
+vs1r.v vs3, (rs1)
+vs2r.v vs3, (rs1)
+vs4r.v vs3, (rs1)
+vs8r.v vs3, (rs1)
+vsaddu vd, vs2, zimm5
+vsaddu vd, vs2, vs1
+vsaddu vd, vs2, rs1
+vsadd.vi vd, vs2 simm5
+vsadd.vv vd, vs2, vs1
+vsadd.vx vd, vs2, rs1
+vsbc.vvm vd, vs2, rs1, v0
+vsbc.vxm vd, vs2, rs1, v0
+vsha2ch.vv vd, vs2, vs1
+vsha2cl.vv vd, vs2, vs1
+vshams.vv vd, vs2, vs1
+vslidedown.vi vd, vs2, rs1
+vslideup.vi vd, vs2, rs1
+vsll.vi  vd, vs2, zimm5
+vsm3c.vi vd, vs2, rnd
+vsm3me.vv vd, vs2, vs1
+vsm4r.vs vd, vs2
+vsm4r.vv vd, vs2
+vsmul.vv vd, vs2, vs1
+vsmul.vx vd, vs2, rs1
+vsra.vi vd, vs2, zimm5
+vsra.vv  vd, vs2, vs1
+vsra.vx vd, vs2, rs1
+vsrl.vi vd, vs2, zimm5
+vsrl.vv  vd, vs2, vs1
+vsrl.vx vd, vs2, rs1
+vssra.vi vd, vs2, simm5
+vssra.vv vd, vs2, vs1
+vssra.vx vd, vs2, rs1
+vssra.vi vd, vs2, simm5
+vssrl.vv vd, vs2, vs1
+vssrl.vx vd, vs2, rs1
+vssubu.vv vd, vs2, vs1
+vssubu.vx vd, vs2, rs1
+vssub.vv vd, vs2, vs1
+vssub.vx vd, vs2, rs1
+vwaddu.vv vd, vs2, vs1
+vwaddu.vx vd, vs2, rs1
+vwaddu.wv vd, vs2, vs1
+vwaddu.wx vd, vs2, rs1
+vwadd.vv vd, vs2, vs1
+vwadd.vx vd, vs2, rs1
+vwadd.wv vd, vs2, vs1
+vwaddu.wx vd, vs2, rs1
+vwmaccsu.vv vd, vs2, vs1
+vwmaccsu.vx vd, vs2, rs1
+vwmaccus.vx vd, vs2, rs1
+vwmaccu.vv vd, vs2, vs1
+vwmaccu.vx vd, vs2, rs1
+vwmacc.vv vd, vs2, vs1
+vwmacc.vx vd, vs2, rs1
+vwmulsu.vv vd, vs2, vs1
+vwmulsu.vx vd, vs2, rs1
+vwmulu.vv vd, vs2, vs1
+vwmul.vx vd, vs2, rs1
+vwmul.vv vd, vs2, vs1
+vwmul.vx vd, vs2, rs1
+vwredsum.vs vd, vs2, vs1
+vwredsum.vs vd, vs2, vs1
+vwsll.vi vd, vs2, zimm5, vm
+vwsll.vv vd, vs2, zimm5, vm
+vwsll.vx vd, vs2, zimm5, vm
+vwsubu.vv vd, vs2, vs1
+vwsubu.vx vd, vs2, rs1
+vwsubu.wv vd, vs2, vs1
+vwsubu.wx vd, vs2, rs1
+vwsub.vv vd, vs2, vs1
+vwsub.vx vd, vs2, rs1
+vwsub.wv vd, vs2, vs1
+vwsub.wx vd, vs2, rs1

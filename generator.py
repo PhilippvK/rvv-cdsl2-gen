@@ -21,12 +21,25 @@ fun3 = {
     },
 }
 
+src_lookup = {
+    "vmv.s.x": "rs1",
+}
+
+dest_lookup = {
+    "vmv.x.s": "rd",
+    "vfmv.f.s": "rd",
+    "vcpop.m": "rd",
+    # alias
+    "vpopc.m": "rd",
+    "vfirst.m": "rd",
+}
+
 extend_encode = {
     "vs1": {
         "VWXUNARY0": {
             "00000": "vmv.x.s",
-            "10000": "vpopc",
-            "10001": "vfirst",
+            "10000": "vcpop.m",  # ALIAS: vpopc
+            "10001": "vfirst.m",
         },
         "VXUNARY0": {
             "00010": "vzext.vf8",
@@ -72,11 +85,11 @@ extend_encode = {
             "10000": "vfclass.v",
         },
         "VMUNARY0": {
-            "00001": "vmsbf",
-            "00010": "vmsof",
-            "00011": "vmsif",
-            "10000": "viota",
-            "10001": "vid",
+            "00001": "vmsbf.m",
+            "00010": "vmsof.m",
+            "00011": "vmsif.m",
+            "10000": "viota.m",
+            "10001": "vid.v",
         },
     },
     "vs2": {"VRXUNARY0": {"00000": "vmv.s.x"}, "VRFUNARY0": {"00000": "vfmv.s.f"}},
@@ -121,6 +134,29 @@ logic_list = ["and", "or", "xor", "xnor"]
 shift_list = ["sr", "sl"]
 other_list = ["slide", "rgather", "merge", "mv", "clip", "compress"]
 ffo_list = ["vfirst", "vmsbf", "vmsof", "vmsif"]
+
+def convert_asm(x):
+    ret = []
+    for y in x.split(","):
+        y = y.strip()
+        y.lower()
+        if y in ["rs1", "rs2", "rd", "vs1", "vs2", "vs3", "vd"]:
+            new = f"{{name({y})}}"
+        else:
+            new = f"{{{y}}}"
+        ret.append(new)
+    return ", ".join(ret)
+
+asm_list = {}
+with open("asm_list.txt", "r") as f:
+    for line in f:
+        line = line.strip()
+        if len(line) == 0:
+            continue
+        mnemonic, asm_args = line.split(" ", 1)
+        asm_list[mnemonic] = convert_asm(asm_args)
+
+# print("asm_list", asm_list)
 
 
 def res_gen():
@@ -202,23 +238,33 @@ def inst_parse():
                     # print("    v", v)
                     if v.get(placeholder):
                         for rsx, inst_name in v.get(placeholder).items():
+                            # print("inst_name", inst_name)
                             inst_st_p = 'BitPat("b%s??????%s%s")' if k == "vs1" else 'BitPat("b%s?%s?????%s")'
+                            # print("k", k)
                             funct7 = "1010111"
                             funct6 = i[0]
                             # bbb = rsx
                             funct3 = fun_3_st
                             vs2_str = f"5'b{rsx}" if k == "vs2" else "vs2[4:0]"
-                            vs1_str = f"5'b{rsx}" if k == "vs1" else "vs1/imm/rs1[4:0]"
-                            vd_str = "vd/rd[4:0]"
+                            dest = dest_lookup.get(inst_name, "vd")
+                            vd_str = f"{dest}[4:0]"
+                            # print("vd_str", vd_str)
                             # print(f"{inst_name}:")
                             # print("funct6", aaa)
                             # print(k, bbb)
                             # print("funct3", ccc)
-                            print(inst_name, "{")
+                            mnemonic = inst_name
+                            if mnemonic == "vid.v":
+                                vs2_str = "5'b00000"  # special case
+                            src_name = src_lookup.get(mnemonic, "vs1")
+                            vs1_str = f"5'b{rsx}" if k == "vs1" else f"{src_name}[4:0]"
+                            cdsl_name = mnemonic.replace(".", "_").upper()
+                            asm = asm_list.get(mnemonic, "?")
+                            print(cdsl_name, "{")
                             print(
                                 f"  encoding: 6'b{funct6} :: vm[0:0] :: {vs2_str} :: {vs1_str} :: 3'b{funct3} :: {vd_str} :: 7'b{funct7}"
                             )
-                            print(f'  assembly: {{"{inst_name}.??", "?"}};')
+                            print(f'  assembly: {{"{mnemonic}", "{asm}"}};')
                             print("  behavior: {};")
                             print("}")
                             # input(">1")
@@ -272,17 +318,38 @@ def inst_parse():
                     funct6 = i[0]
                     funct3 = fun3[fun_3][inst_type]
                     vs2_str = "vs2[4:0]"
-                    vs1_str = "vs1/imm/rs1[4:0]"
-                    vd_str = "vd/rd[4:0]"
                     funct7 = "1010111"
+                    name = i[-1]
+                    if inst_type == "V":
+                        default_suffix = "vv"
+                        vs1_str = "vs1[4:0]"
+                    elif inst_type == "X":
+                        default_suffix = "vx"
+                        vs1_str = "rs1[4:0]"
+                    elif inst_type == "F":
+                        default_suffix = "vf"
+                        vs1_str = "rs1[4:0]"
+                    elif inst_type == "I":
+                        default_suffix = "vi"
+                        vs1_str = "imm[4:0]"
+                    else:
+                        raise ValueError(f"inst_type: {inst_type}")
+                    suffix = default_suffix
+                    mnemonic = f"{name}.{suffix}"
+                    dest = dest_lookup.get(mnemonic, "vd")
+                    vd_str = f"{dest}[4:0]"
+                    cdsl_name = mnemonic.replace(".", "_").upper()
                     # print(f"{i[-1]}:")
                     # print("funct6", funct6)
                     # print("funct3", funct3)
-                    print(i[-1].upper(), "{")
+                    asm = asm_list.get(mnemonic, "?")
+                    # assert asm != "?"
+                    print(cdsl_name, "{")
                     print(
                         f"  encoding: 6'b{funct6} :: vm[0:0] :: {vs2_str} :: {vs1_str} :: 3'b{funct3} :: {vd_str} :: 7'b{funct7};"
                     )
-                    print(f'  assembly: {{"{i[-1]}.??", "?"}};')
+                    print(f'  assembly: {{"{mnemonic}", "{asm}"}};')
+                    print("  behavior: {};")
                     print("}")
                     # input(">2")
                     abc = "?"
