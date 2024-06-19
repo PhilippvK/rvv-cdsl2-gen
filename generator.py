@@ -212,7 +212,7 @@ def b2s(b):
 
 
 def inst_parse():
-    fd = open("output.core_desc", "w")
+    # fd = open("output.core_desc", "w")
     res = load_res()
     count = 0
     end_count = 0
@@ -269,7 +269,7 @@ def inst_parse():
                             print("}")
                             # input(">1")
                             inst_st = inst_st_p % (i[0], rsx, fun_3_st)
-                            fd.write(inst_name + ": " + inst_st + "\n")
+                            # fd.write(inst_name + ": " + inst_st + "\n")
 
             else:
                 # print("  else")
@@ -353,7 +353,7 @@ def inst_parse():
                     print("}")
                     # input(">2")
                     abc = "?"
-                    fd.write(i[-1] + "." + abc + inst_type.lower() + ": " + inst_st + "\n")
+                    # fd.write(i[-1] + "." + abc + inst_type.lower() + ": " + inst_st + "\n")
 
                 end_count += 1
     print(count, end_count)
